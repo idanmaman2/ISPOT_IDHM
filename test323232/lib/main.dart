@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:spotify/spotify_browser.dart';
-import 'package:test323232/InstgramObject.dart';
-import 'package:test323232/instgramPage.dart';
-import 'package:test323232/spot.dart';
-import 'package:uni_links/uni_links.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:spotify/spotify.dart';
+import 'package:test323232/Objects/instgram_object.dart';
+import 'package:test323232/widgets/instgram_page.dart';
+import 'package:test323232/Tools_Static/spot.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart' as ytl;
+import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
 void main() {
   runApp(const MyApp());
@@ -46,7 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
   var redirectUri = 'https://github.com/asimon655/dotNet5782_3715_6941';
   var authUri;
   final scopes = [
-    'user-read-email',
     'user-library-read',
     'user-read-currently-playing',
     'user-read-recently-played',
@@ -88,27 +90,65 @@ class _MyHomePageState extends State<MyHomePage> {
             print((spotify.me.currentlyPlaying()).then((x) async {
               print(x.item?.name);
               print(x.item?.artists?.first.name);
-              var insatSearch = await http.read(Uri.parse(
-                  "https://www.instagram.com/web/search/topsearch/?context=blended&query=${x.item?.artists?.first.name}&rank_token=0.3610197994284863&include_reel=true"));
-              print(insatSearch);
+              String insatSearch;
+              do {
+                insatSearch = await http.read(Uri.parse(
+                    "https://www.instagram.com/web/search/topsearch/?context=blended&query=${x.item?.artists?.first.name}&rank_token=0.3610197994284863&include_reel=true"));
+                print(insatSearch);
+              } while (insatSearch.contains("<!DOCTYPE html>"));
+
               var instaSearchJson = jsonDecode(insatSearch);
               print((instaSearchJson['users']).first['user']["username"]);
 
               final youtubeReg = RegExp('''\"videoId\"\:\"[\\w]{11}\"''');
 
               final youtubeCode = await http.read(Uri.parse(
-                  "https://www.youtube.com/results?search_query=${x.item!.name! + x.item!.artists!.join(" ")}"));
+                  "https://www.youtube.com/results?search_query=${x.item!.name!}"));
               String VideoId = youtubeCode
                   .substring(youtubeReg.allMatches(youtubeCode).first.start,
                       youtubeReg.allMatches(youtubeCode).first.end)
                   .substring(11, 22);
               print(VideoId);
+
+              var yt = ytl.YoutubeExplode();
+              var manifest2 = await yt.videos.streamsClient
+                  .getManifest(ytl.VideoId(VideoId));
+              var audio2 = manifest2.audioOnly.last;
+              print(audio2.size);
+              await Permission.storage.request();
+              print(VideoId);
+              var id = ytl.VideoId(VideoId);
+              // Get the streams manifest and the audio track.
+              var manifest = await yt.videos.streamsClient.getManifest(id);
+              var audio = manifest.audioOnly.last;
+              var video = await yt.videos.get(id);
+              // Build the directory.
+              Directory appDocumentsDirectory =
+                  await getApplicationDocumentsDirectory(); // 1
+              String appDocumentsPath = appDocumentsDirectory.path; // 2
+              String filePath =
+                  '$appDocumentsPath/${video.id}.${audio.container.name}'; // 3
+              print(filePath);
+              var file = File(filePath);
+              var fileStream = file.openWrite();
+              await yt.videos.streamsClient.get(audio).listen((event) {
+                print("audio: " + event.join(""));
+              });
+              await yt.videos.streamsClient.get(audio).pipe(fileStream);
+              await fileStream.flush();
+              await fileStream.close();
+
+              yt.close();
+              AudioPlayer audioPlayer = AudioPlayer();
+              await audioPlayer.play(filePath);
               print(youtubeCode.substring(
                   youtubeReg.allMatches(youtubeCode).first.start,
                   youtubeReg.allMatches(youtubeCode).first.end));
-
-              final insta = await http.read(Uri.parse(
-                  "https://www.instagram.com/${(instaSearchJson['users']).first['user']["username"]}/?__a=1"));
+              String insta;
+              do {
+                insta = await http.read(Uri.parse(
+                    "https://www.instagram.com/${(instaSearchJson['users']).first['user']["username"]}/?__a=1"));
+              } while (insta.contains("<!DOCTYPE html>"));
               var instaJson = jsonDecode(insta);
 
               instaJson['graphql']['user']['edge_owner_to_timeline_media']

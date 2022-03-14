@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test323232/instgramPage.dart';
+import 'package:test323232/widgets/instgram_page.dart';
 
 class InstaObject {
   String userPhotoLink;

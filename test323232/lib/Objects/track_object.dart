@@ -4,6 +4,7 @@ class TrackSpot {
   late String? name;
   late String? id;
   late String? uri;
+  late String? originalPlayList;
   TrackSpot(String name, String id, String uri)
       : name = name,
         id = id,

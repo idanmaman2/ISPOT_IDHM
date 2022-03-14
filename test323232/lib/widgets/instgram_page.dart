@@ -1,11 +1,10 @@
-import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:avatars/avatars.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart' as spotify;
-import 'package:test323232/InstgramObject.dart';
-import 'package:test323232/Stringops.dart';
-import 'package:test323232/photo_show.dart';
+import 'package:test323232/Objects/instgram_object.dart';
+import 'package:test323232/Tools_Static/Stringops.dart';
+import 'package:test323232/widgets/photo_show.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ProfileShow extends StatefulWidget {

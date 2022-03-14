@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:spotify/spotify.dart';
-import 'package:test323232/Track.dart';
+import 'package:test323232/Objects/track_object.dart';
 
 class spot {
   static Future<Response> getTracksByPlaylistId(

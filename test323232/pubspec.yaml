@@ -36,6 +36,10 @@ dependencies:
   avatars: ^3.0.2
   auto_size_text: ^3.0.0
   youtube_player_flutter: ^8.0.0
+  youtube_explode_dart: ^1.10.10+2
+  path_provider: ^2.0.9
+  audioplayers: ^0.20.1
+  permission_handler: ^9.2.0
   flutter:
     sdk: flutter
 
