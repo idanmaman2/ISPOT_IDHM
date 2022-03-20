@@ -69,7 +69,7 @@ class YoutubeOps{
         return VideoId;
 
     }
-    static Future<void> saveVideo(String idParam )async{
+    static Future<String> saveVideo(String idParam )async{
                     var yt = ytl.YoutubeExplode();
               var manifest2 = await yt.videos.streamsClient
                   .getManifest(ytl.VideoId(idParam));
@@ -101,8 +101,9 @@ class YoutubeOps{
               await fileStream.close();
 
               yt.close();
+              return filePath;
     }
-    static Future<void> saveVideoVideoId(ytl.VideoId id)async{
+    static Future<String> saveVideoVideoId(ytl.VideoId id)async{
                     var yt = ytl.YoutubeExplode();
               var manifest2 = await yt.videos.streamsClient
                   .getManifest(id);
@@ -134,6 +135,7 @@ class YoutubeOps{
               await fileStream.close();
 
               yt.close();
+              return filePath;
 
     }
 

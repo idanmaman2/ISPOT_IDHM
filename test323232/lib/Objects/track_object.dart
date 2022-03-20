@@ -1,12 +1,14 @@
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
+import 'package:test323232/Tools_Static/youtube_object.dart';
 class TrackSpot {
   late String? name;
   late String? id;
   late String? uri;
   late String? originalPlayList;
   AudioPlayer ?  _playerInstance;
+  late String filePath ; 
   AudioPlayer get _player {
     _playerInstance ??= AudioPlayer();
     return _playerInstance! ;
@@ -36,18 +38,10 @@ class TrackSpot {
     //TO DO 
   }
 
-
-
-
-
-
   Future SaveFile()async{
 
-
-
-  }
-  Future loadFromName()async{
-        
+     String ytId =  await YoutubeOps.getYoutubeId(this);
+    filePath  = await  YoutubeOps.saveVideo(ytId); 
 
   }
 
@@ -55,7 +49,7 @@ class TrackSpot {
   void playSong(){
     _player.play();
   }
-  Future  loadSong(String filePath)async{
+  Future  loadSong()async{
 
    await  _player.setFilePath(filePath);
   }
