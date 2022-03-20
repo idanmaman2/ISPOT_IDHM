@@ -32,6 +32,12 @@ class TrackSpot {
   TrackSpot.fromYoutubeId(String ytId){
     //TO DO 
   }
+  TrackSpot.SongName(String name ){
+    //TO DO 
+  }
+
+
+
 
 
 
@@ -45,9 +51,7 @@ class TrackSpot {
 
   }
 
-  TrackSpot.SongName(String name ){
-    //TO DO 
-  }
+
   void playSong(){
     _player.play();
   }
@@ -61,10 +65,7 @@ class TrackSpot {
     }
     else {
       await _player.seek(position);
-    }
-
-      
-
+    }     
   }
   Future  pauseSong()async{
     await _player.pause();
