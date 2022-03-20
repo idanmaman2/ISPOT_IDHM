@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color spotifyMain = Colors.lightGreen;
-Color spotifySecondry = Colors.black45;
-Color instagramMain = Colors.white;
-Color instgramText = Colors.black;
+const Color spotifyMain = Colors.lightGreen;
+const Color spotifySecondry = Colors.black45;
+const Color instagramMain = Colors.white;
+const Color instgramText = Colors.black;
