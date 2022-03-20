@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart';
@@ -46,9 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
   var credentials;
   var grant;
 
-  var redirectUri = 'https://github.com/asimon655/dotNet5782_3715_6941';
-  var authUri;
-  final scopes = [
+  final  redirectUri = 'https://github.com/asimon655/dotNet5782_3715_6941';
+   var authUri;
+  final scopes = const [
     'user-library-read',
     'user-read-currently-playing',
     'user-read-recently-played',
@@ -139,8 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
               await fileStream.close();
 
               yt.close();
-              AudioPlayer audioPlayer = AudioPlayer();
-              await audioPlayer.play(filePath);
               print(youtubeCode.substring(
                   youtubeReg.allMatches(youtubeCode).first.start,
                   youtubeReg.allMatches(youtubeCode).first.end));

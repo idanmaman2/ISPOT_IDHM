@@ -61,7 +61,7 @@ class _ProfileShowState extends State<ProfileShow> {
                       child: Container(
                         child: Center(
                           child: AutoSizeText(
-                            "@" + widget.insta.ProfileName,
+                            "@" + widget.insta.profileName,
                             maxLines: 1,
                             minFontSize: 25,
                             maxFontSize: 40,
@@ -130,7 +130,7 @@ class _ProfileShowState extends State<ProfileShow> {
                                         Expanded(
                                           flex: 2,
                                           child: AutoSizeText(
-                                            "Biography:\n${StringOPs.splitTosmall(widget.insta.Bio)}",
+                                            "Biography:\n${StringOPs.splitTosmall(widget.insta.bio)}",
                                             maxFontSize: 25,
                                             minFontSize: 14,
                                             maxLines: 5,
@@ -139,7 +139,7 @@ class _ProfileShowState extends State<ProfileShow> {
                                         Expanded(
                                             flex: 1,
                                             child: Text(
-                                                "Followers: ${StringOPs.numberShow(widget.insta.Followers.toString())}"))
+                                                "Followers: ${StringOPs.numberShow(widget.insta.followers.toString())}"))
                                       ],
                                     ),
                                   ],
