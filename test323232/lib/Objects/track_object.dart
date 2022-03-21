@@ -1,7 +1,8 @@
-import 'package:flutter/services.dart';
+
 import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
-import 'package:test323232/Tools_Static/youtube_object.dart';
+import 'package:test323232/Tools_Static/youtube_ops.dart';
+import 'package:test323232/Tools_Static/spot.dart';
 class TrackSpot {
   late String? name;
   late String? id;
@@ -17,6 +18,11 @@ class TrackSpot {
 
 
   TrackSpot(this.name, this.id, this.uri);
+  Future<TrackSpot> fromSpotifyId(String id)async {
+    Track track =  await  spot.getSpotInstance().tracks.get(id);
+      return TrackSpot(track.name,id,track.uri);
+      
+  }
 
   TrackSpot.fromTrack(Track x)
       : name = x.name,
@@ -46,8 +52,15 @@ class TrackSpot {
   }
 
 
-  void playSong(){
-    _player.play();
+  Future playSong()async{
+    await _player.play();
+    
+  }
+  Duration durationOfSong(){
+    return _player.duration ?? Duration();
+  }
+    Stream<Duration> durationOfSongCurrent(){
+    return _player.positionStream;
   }
   Future  loadSong()async{
 

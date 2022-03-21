@@ -40,7 +40,8 @@ class YoutubeOps{
     }
    static getFirstEmptySpace(){
      for(var key in _taken.keys){
-        if(_taken[key]! != ""){
+       print(_taken[key]);
+        if(_taken[key]! == ""){
           return key;
         }       
      }
@@ -70,6 +71,7 @@ class YoutubeOps{
 
     }
     static Future<String> saveVideo(String idParam )async{
+      print("helllo");
                     var yt = ytl.YoutubeExplode();
               var manifest2 = await yt.videos.streamsClient
                   .getManifest(ytl.VideoId(idParam));

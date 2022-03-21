@@ -129,11 +129,13 @@ class _ProfileShowState extends State<ProfileShow> {
                                       children: [
                                         Expanded(
                                           flex: 2,
-                                          child: AutoSizeText(
-                                            "Biography:\n${StringOPs.splitTosmall(widget.insta.bio)}",
-                                            maxFontSize: 25,
-                                            minFontSize: 14,
-                                            maxLines: 5,
+                                          child: SingleChildScrollView(
+                                            child: AutoSizeText(
+                                              "Biography:\n${StringOPs.splitTosmall(widget.insta.bio)}",
+                                              maxFontSize: 25,
+                                              minFontSize: 14,
+                                              maxLines: 5,
+                                            ),
                                           ),
                                         ),
                                         Expanded(

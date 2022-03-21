@@ -17,33 +17,32 @@ class spot {
         queryParameters: {'limit': '100'}));
   }
 
-  static SpotifyApi? _spotInstance;
-  static late Set<TrackSpot> songs;
+  static SpotifyApi? _spotInstance = null;
+  static final Set<TrackSpot> songs = {} ;
 
-  static Future<SpotifyApi> getSpotInstance(
-      {dynamic? grant, String url = ""}) async {
-    if (_spotInstance == null) {
-      songs = await getLastSongs(_spotInstance as SpotifyApi);
-    }
+  static SpotifyApi getSpotInstance(
+      {dynamic? grant, String url = ""})  {
     _spotInstance ??= SpotifyApi.fromAuthCodeGrant(grant, url);
-    return _spotInstance as SpotifyApi;
+    print("hello");
+    return _spotInstance!;
+  }
+  static Future initSongs () async{
+        songs.addAll(await getLastSongs());
   }
 
-  static Future<Set<TrackSpot>> getLastSongs(SpotifyApi x) async {
+  static Future<Set<TrackSpot>> getLastSongs() async {
     Set<TrackSpot> songsItems = {};
-
-    var x1 = await (x).me.recentlyPlayed(limit: 50);
-    var x2 = await x.playlists.me.all(); //
-    var x3 = await x.tracks.me.saved.all(); //first name - playlist get
-    var x4 = await (x).me.topTracks(); // first TrackSvaed -> track ->  name
-    var x5 = await x.me.topArtists();
-    print('\nFeatured Playlist:');
-    var featuredPlaylists = await x.playlists.featured.all();
-
+     DateTime dt = DateTime.now().subtract(Duration(hours: 1));
+    var x1 = await getSpotInstance().me.recentlyPlayed(limit: 50, after: dt);
+    var x2 = await getSpotInstance().playlists.me.all(); //
+    var x3 = await getSpotInstance().tracks.me.saved.all(); //first name - playlist get
+    var x4 = await getSpotInstance().me.topTracks(); // first TrackSvaed -> track ->  name
+    var x5 = await getSpotInstance().me.topArtists();
+    var featuredPlaylists = await getSpotInstance().playlists.featured.all();
     for (var element in featuredPlaylists) {
       print("x21: " + element.name!);
       for (var element2 in await (jsonDecode(
-          (await getTracksByPlaylistId(element.id!, x)).body)?['items'])) {
+          (await getTracksByPlaylistId(element.id!, getSpotInstance())).body)?['items'])) {
         print("playlist songggg ${element.name!} : " +
             (element2?['track']?['name'] ?? "no"));
         if (element2['track'] != null &&
@@ -63,7 +62,7 @@ class spot {
     for (var element in x2) {
       print("x21: " + element.name!);
       for (var element2 in await (jsonDecode(
-          (await getTracksByPlaylistId(element.id!, x)).body)?['items'])) {
+          (await getTracksByPlaylistId(element.id!, getSpotInstance())).body)?['items'])) {
         print("playlist songggg ${element.name!} : " +
             (element2?['track']?['name'] ?? "no"));
 
@@ -71,19 +70,11 @@ class spot {
             element2?['track']?['id'], element2?['track']?['href']));
       }
     }
-
-    // (await (Playlists(x).getTracksByPlaylistId(element.id)).all())
-    //  .forEach((element2) {
-    // print(element2.name);
-    //  });
-
     songsItems.addAll(x3.map((e) => TrackSpot.fromTrack(e.track as Track)));
-
     x4.forEach((element) {
       songsItems.addAll(
           element.album!.tracks!.map((e) => TrackSpot.fromTrackSimple(e)));
     });
-
     return songsItems;
   }
 }
