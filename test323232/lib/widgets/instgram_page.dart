@@ -102,7 +102,7 @@ class _ProfileShowState extends State<ProfileShow> {
                                       widget._controller?.seekTo(
                                           Duration(
                                               seconds: 3 +
-                                                  ((value.progress_ms as int) ~/
+                                                  ((value.progress_ms ?? 0) ~/
                                                       1000),
                                               microseconds: 600),
                                           allowSeekAhead: true);

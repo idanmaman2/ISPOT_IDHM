@@ -9,11 +9,10 @@ class PhotoShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: FittedBox(
+        body: 
+      FittedBox(
         fit: BoxFit.cover,
-        child: x,
-      ),
+        child: x,     
     ));
   }
 }

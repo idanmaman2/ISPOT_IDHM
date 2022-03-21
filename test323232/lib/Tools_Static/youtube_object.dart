@@ -10,50 +10,66 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart' as ytl;
 class YoutubeOps{
 
 
-   static final Map<String,bool> taken ={};
+   static final Map<String,String> _taken ={};
+   static final   RegExp  _youtubeReg = RegExp('''\"videoId\"\:\"[\\w]{11}\"''');
+   static const _youtubeQueryUri = "https://www.youtube.com/results?search_query=";
+
+
+
+
+
+   static void realseSongSpace(String key){
+     if(_taken.containsKey(key)){
+       _taken[key]="";
+     }
+     else {
+       throw IndexError(int.parse(key.substring(4)),"No such Key in FileStack");
+     }
+
+   }
     static void initYotubeOps(int stackSize){
+      if(stackSize <= 0 )
+      {
+          throw StackSizeTooSmall();
+
+      }
         for(int i=0;i<stackSize;i++){
-          taken["song$i"] =false;
+          _taken["song$i"] ="";
         }
 
     }
    static getFirstEmptySpace(){
-     for(var key in taken.keys){
-        if(!taken[key]!){
+     for(var key in _taken.keys){
+        if(_taken[key]! != ""){
           return key;
-        }
-            
+        }       
      }
       throw FileStackOverFlow();
 
    }
-    static final RegExp  youtubeReg = RegExp('''\"videoId\"\:\"[\\w]{11}\"''');
-    static Future<String> getYoutubeId(TrackSpot  track)async{
-      
-              final youtubeCode = await http.read(Uri.parse(
-                  "https://www.youtube.com/results?search_query=${track.name}"));
-              String VideoId = youtubeCode
-                  .substring(youtubeReg.allMatches(youtubeCode).first.start,
-                      youtubeReg.allMatches(youtubeCode).first.end)
-                  .substring(11, 22);
-              print(VideoId);
 
+    static Future<String> getYoutubeId(TrackSpot  track)async{  
+              final youtubeCode = await http.read(Uri.parse("$_youtubeQueryUri${track.name}"));
+              Iterable<RegExpMatch> regexMatches = _youtubeReg.allMatches(youtubeCode);
+              String VideoId = youtubeCode
+                  .substring(regexMatches.first.start,regexMatches.first.end)//to find all of the first regex result from the whole scraped js file .
+                  .substring(11, 22); // to find only the ytID code from the whole regex .
+              print(VideoId);
         return VideoId;
 
     }
     static Future<String> getYoutubeIdString(String name )async{
-                      final youtubeCode = await http.read(Uri.parse(
-                  "https://www.youtube.com/results?search_query=$name"));
+              final youtubeCode = await http.read(Uri.parse("$_youtubeQueryUri${name}"));
+              Iterable<RegExpMatch> regexMatches = _youtubeReg.allMatches(youtubeCode);
               String VideoId = youtubeCode
-                  .substring(youtubeReg.allMatches(youtubeCode).first.start,
-                      youtubeReg.allMatches(youtubeCode).first.end)
-                  .substring(11, 22);
+                  .substring(regexMatches.first.start,regexMatches.first.end)//to find all of the first regex result from the whole scraped js file .
+                  .substring(11, 22);// to find only the ytID code from the whole regex .
               print(VideoId);
 
         return VideoId;
 
     }
-    static Future<void> saveVideo(String idParam )async{
+    static Future<String> saveVideo(String idParam )async{
                     var yt = ytl.YoutubeExplode();
               var manifest2 = await yt.videos.streamsClient
                   .getManifest(ytl.VideoId(idParam));
@@ -70,8 +86,10 @@ class YoutubeOps{
               Directory appDocumentsDirectory =
                   await getApplicationDocumentsDirectory(); // 1
               String appDocumentsPath = appDocumentsDirectory.path; // 2
-              String filePath =
-                  '$appDocumentsPath/${video.id}.${audio.container.name}'; // 3
+                  String fileKey = getFirstEmptySpace();
+              _taken[fileKey] = audio.container.name;
+              String filePath = 
+                  '$appDocumentsPath/$fileKey.${audio.container.name}'; // 3
               print(filePath);
               var file = File(filePath);
               var fileStream = file.openWrite();
@@ -83,8 +101,9 @@ class YoutubeOps{
               await fileStream.close();
 
               yt.close();
+              return filePath;
     }
-    static Future<void> saveVideoVideoId(ytl.VideoId id)async{
+    static Future<String> saveVideoVideoId(ytl.VideoId id)async{
                     var yt = ytl.YoutubeExplode();
               var manifest2 = await yt.videos.streamsClient
                   .getManifest(id);
@@ -100,8 +119,11 @@ class YoutubeOps{
               Directory appDocumentsDirectory =
                   await getApplicationDocumentsDirectory(); // 1
               String appDocumentsPath = appDocumentsDirectory.path; // 2
-              String filePath =
-                  '$appDocumentsPath/${video.id}.${audio.container.name}'; // 3
+
+              String fileKey = getFirstEmptySpace();
+              _taken[fileKey] = audio.container.name;
+              String filePath = 
+                  '$appDocumentsPath/$fileKey.${audio.container.name}'; // 3
               print(filePath);
               var file = File(filePath);
               var fileStream = file.openWrite();
@@ -113,6 +135,7 @@ class YoutubeOps{
               await fileStream.close();
 
               yt.close();
+              return filePath;
 
     }
 
