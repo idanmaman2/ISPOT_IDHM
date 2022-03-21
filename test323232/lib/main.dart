@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart';
 import 'package:test323232/Objects/instgram_object.dart';
+import 'package:test323232/widgets/audio_player_warpper.dart';
 import 'package:test323232/widgets/instgram_page.dart';
 import 'package:test323232/Tools_Static/spot.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -92,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               String insatSearch;
               do {
                 insatSearch = await http.read(Uri.parse(
-                    "https://www.instagram.com/web/search/topsearch/?context=blended&query=${x.item?.artists?.first.name}&rank_token=0.3610197994284863&include_reel=true"));
+                    "https://www.instagram.com/web/search/topsearch/?context=blended&query=${x.item?.artists?.first.name}"));
                 print(insatSearch);
               } while (insatSearch.contains("<!DOCTYPE html>"));
 
@@ -175,11 +176,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 context,
                 MaterialPageRoute<void>(
                     builder: (BuildContext context) => Scaffold(
-                            body: ProfileShow(
+                            body:MusicPlayerWarpper(warp: ProfileShow(
                           VideoId,
                           insta: i,
                           spot: spotify,
-                        ))),
+                        ),))),
               );
               DateTime dt = DateTime.now().subtract(Duration(hours: 1));
               var x1 = await spotify.me.recentlyPlayed(limit: 50, after: dt);
