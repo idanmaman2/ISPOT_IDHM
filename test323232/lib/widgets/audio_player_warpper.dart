@@ -67,12 +67,7 @@ class _MusicPlayerWarpperState extends State<MusicPlayerWarpper> {
 
 
         },child: Icon(Icons.play_circle_fill_outlined),),),
-        Expanded(flex:1 , child: TextButton(onPressed: (){
-
-
-
-
-        },child: Icon(Icons.skip_next),),),
+        Expanded(flex:1 , child: TextButton(onPressed: widget.pressPausePlay ,child: Icon(Icons.skip_next),),),
 
         
         

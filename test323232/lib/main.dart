@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               pos:track.durationOfSongCurrent(),
                               pressNext: (){},
                               pressPrev:(){},
-                              pressPausePlay:(){},
+                              pressPausePlay:track.pausePlayAuto,
                           warp: ProfileShow(
                           VideoId,
                           insta: insta,

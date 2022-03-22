@@ -77,5 +77,13 @@ class TrackSpot {
   Future  pauseSong()async{
     await _player.pause();
   }
+  Future pausePlayAuto()async{
+    if(_player.playing){
+      pauseSong();
+    }
+    else {
+      playSong();
+    }
+  }
 
 }
