@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
               await spot.initSongs();
               TrackSpot track =spot.getNextSong();
               YoutubeOps.initYotubeOps(1);
-              await track.SaveFile();
+              await track.saveFile();
               await track.loadSong();
              InstaObject insta = await InstaObject.fromSpotifyUserName(track.singersFullName.first);
               String VideoId = await YoutubeOps.getYoutubeIdString(track.name!);

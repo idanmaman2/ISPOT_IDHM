@@ -94,7 +94,7 @@ class _MusicPlayerWarpperState extends State<MusicPlayerWarpper> {
               trackCurrent.realse();
               TrackSpot trackNext = widget.pressNext();
                     widget.pressPausePlay(play:true);
-                     await trackNext.SaveFile(); 
+                     await trackNext.saveFile(); 
                      await trackNext.loadSong(); 
                       await widget.__init(trackNext);
                             setState(() {
@@ -130,7 +130,7 @@ class _MusicPlayerWarpperState extends State<MusicPlayerWarpper> {
             Expanded(flex:7 , child: TextButton(style:buttonStyleAppBar ,   onPressed: () async{
                     await widget.pressPausePlay(stop:true);           
                     TrackSpot track = widget.pressPrev();
-                     await track.SaveFile(); 
+                     await track.saveFile(); 
                      await track.loadSong(); 
                             setState(() {
                        widget.__init(track);
@@ -164,7 +164,7 @@ class _MusicPlayerWarpperState extends State<MusicPlayerWarpper> {
               TrackSpot trackCurrent = widget.pressCurrent(); 
               trackCurrent.realse();
               TrackSpot trackNext = widget.pressNext();
-                     await trackNext.SaveFile(); 
+                     await trackNext.saveFile(); 
                      await trackNext.loadSong(); 
                       await widget.__init(trackNext);
                             setState(() {

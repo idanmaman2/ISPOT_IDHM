@@ -15,3 +15,11 @@
       return "the stack size is negative is zero - please change it to be positive";
     }
   }
+    class   ThereIsntFile implements Exception {
+  
+  
+    @override
+    String toString() {
+      return "thre osnt file with that name";
+    }
+  }

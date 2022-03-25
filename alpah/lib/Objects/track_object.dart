@@ -3,6 +3,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
 import 'package:test323232/Tools_Static/youtube_ops.dart';
 import 'package:test323232/Tools_Static/spot.dart';
+import 'package:test323232/exceptions.dart';
 class TrackSpot {
   late String? name;
   late String? id;
@@ -10,7 +11,7 @@ class TrackSpot {
   late String? originalPlayList;
   AudioPlayer ?  _playerInstance;
   late Iterable<String> singersFullName ; 
-  late String filePath ; 
+  String ? filePath ; 
   AudioPlayer get _player {
     _playerInstance ??= AudioPlayer();
     return _playerInstance! ;
@@ -38,7 +39,7 @@ class TrackSpot {
         singersFullName = x.artists!.map((x)=> x.name!);
 
   static Future<TrackSpot> fromTrackLinkNameInit(TrackLink x,SpotifyApi y) async {
-    Track track = await (await y.tracks.get(x.id as String));
+    Track track = await y.tracks.get(x.id as String);
    return  TrackSpot(x.id,x.uri,track.name,track.artists!.map((x)=> x.name!));
   }
 
@@ -46,11 +47,11 @@ class TrackSpot {
     //TO DO 
   }
   
-  TrackSpot.SongName(String name ){
+  TrackSpot.songName(String name ){
     //TO DO 
   }
 
-  Future SaveFile()async{
+  Future saveFile()async{
 
      String ytId =  await YoutubeOps.getYoutubeId(this);
     filePath  = await  YoutubeOps.saveVideo(ytId); 
@@ -63,7 +64,7 @@ class TrackSpot {
   }
   
   Duration durationOfSong(){
-    return _player.duration ?? Duration();
+    return _player.duration ?? const Duration();
   }
     
   Stream<Duration> durationOfSongCurrent(){
@@ -75,8 +76,14 @@ class TrackSpot {
   }
   
   Future  loadSong()async{
-
-   await  _player.setFilePath(filePath);
+  if(filePath == null ){
+    throw ThereIsntFile();
+  } 
+   await  _player.setFilePath(filePath!);
+  }
+  
+    bool   isLoaded(){
+     return _player.currentIndex != null ; 
   }
   
   Future seekSong(Duration ? position , {bool fromStart = false})async{
@@ -103,7 +110,10 @@ class TrackSpot {
   }
 
 void  realse () {
-  String songName = filePath.substring(filePath.lastIndexOf('/')+1,filePath.lastIndexOf('.')) ;
+    if(filePath == null ){
+    throw ThereIsntFile();
+  } 
+  String songName = filePath!.substring(filePath!.lastIndexOf('/')+1,filePath!.lastIndexOf('.')) ;
   YoutubeOps.realse(songName);
 } 
 

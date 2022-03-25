@@ -11,7 +11,6 @@ class spot {
   static SpotifyApi? _spotInstance ;
   static final List<TrackSpot> _songs = []   ;
   static int _indexer = -1 ; 
-
   static Future<Response> _getTracksByPlaylistId(String playlistId, SpotifyApi x) async {
     //https://api.spotify.com/v1/playlists/{playlist_id}/tracks
     //'v1/playlists/$playlistId/tracks'
