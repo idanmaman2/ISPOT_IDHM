@@ -1,0 +1,114 @@
+Date : 2022-03-27 13:56:59
+Directory : c:\Users\Idang\Documents\ISPOT_IDHM
+Total : 47 files,  1654 codes, 194 comments, 325 blanks, all 2173 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Dart       |         16 |      1,005 |         20 |        204 |      1,229 |
+| JSON       |          3 |        180 |          0 |          3 |        183 |
+| XML        |          9 |        126 |         46 |         11 |        183 |
+| C++        |          6 |         99 |         27 |         39 |        165 |
+| Groovy     |          3 |         90 |          3 |         22 |        115 |
+| HTML       |          1 |         80 |         18 |          7 |        105 |
+| YAML       |          2 |         33 |         79 |         21 |        133 |
+| Markdown   |          3 |         15 |          0 |         11 |         26 |
+| Swift      |          1 |         12 |          0 |          2 |         14 |
+| Properties |          2 |         10 |          1 |          2 |         13 |
+| kotlin     |          1 |          4 |          0 |          3 |          7 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                            |         47 |      1,654 |        194 |        325 |      2,173 |
+| alpah                                                                                                        |         46 |      1,652 |        194 |        323 |      2,169 |
+| alpah\android                                                                                                |         13 |        169 |         48 |         36 |        253 |
+| alpah\android\app                                                                                            |          9 |        124 |         47 |         25 |        196 |
+| alpah\android\app\src                                                                                        |          8 |         69 |         44 |         12 |        125 |
+| alpah\android\app\src\debug                                                                                  |          1 |          4 |          3 |          1 |          8 |
+| alpah\android\app\src\main                                                                                   |          6 |         61 |         38 |         10 |        109 |
+| alpah\android\app\src\main\kotlin                                                                            |          1 |          4 |          0 |          3 |          7 |
+| alpah\android\app\src\main\kotlin\com                                                                        |          1 |          4 |          0 |          3 |          7 |
+| alpah\android\app\src\main\kotlin\com\example                                                                |          1 |          4 |          0 |          3 |          7 |
+| alpah\android\app\src\main\kotlin\com\example\test323232                                                     |          1 |          4 |          0 |          3 |          7 |
+| alpah\android\app\src\main\res                                                                               |          4 |         26 |         32 |          6 |         64 |
+| alpah\android\app\src\main\res\drawable                                                                      |          1 |          4 |          7 |          2 |         13 |
+| alpah\android\app\src\main\res\drawable-v21                                                                  |          1 |          4 |          7 |          2 |         13 |
+| alpah\android\app\src\main\res\values                                                                        |          1 |          9 |          9 |          1 |         19 |
+| alpah\android\app\src\main\res\values-night                                                                  |          1 |          9 |          9 |          1 |         19 |
+| alpah\android\app\src\profile                                                                                |          1 |          4 |          3 |          1 |          8 |
+| alpah\android\gradle                                                                                         |          1 |          5 |          1 |          1 |          7 |
+| alpah\android\gradle\wrapper                                                                                 |          1 |          5 |          1 |          1 |          7 |
+| alpah\ios                                                                                                    |          7 |        222 |          2 |          9 |        233 |
+| alpah\ios\Runner                                                                                             |          7 |        222 |          2 |          9 |        233 |
+| alpah\ios\Runner\Assets.xcassets                                                                             |          3 |        148 |          0 |          4 |        152 |
+| alpah\ios\Runner\Assets.xcassets\AppIcon.appiconset                                                          |          1 |        122 |          0 |          1 |        123 |
+| alpah\ios\Runner\Assets.xcassets\LaunchImage.imageset                                                        |          2 |         26 |          0 |          3 |         29 |
+| alpah\ios\Runner\Base.lproj                                                                                  |          2 |         61 |          2 |          2 |         65 |
+| alpah\lib                                                                                                    |         15 |        991 |         10 |        197 |      1,198 |
+| alpah\lib\Decoration                                                                                         |          1 |          6 |          0 |          2 |          8 |
+| alpah\lib\Objects                                                                                            |          3 |        154 |          2 |         44 |        200 |
+| alpah\lib\Tools_Static                                                                                       |          5 |        300 |          8 |         73 |        381 |
+| alpah\lib\widgets                                                                                            |          4 |        402 |          0 |         54 |        456 |
+| alpah\linux                                                                                                  |          5 |         98 |         27 |         38 |        163 |
+| alpah\linux\flutter                                                                                          |          2 |         12 |          9 |         11 |         32 |
+| alpah\test                                                                                                   |          1 |         14 |         10 |          7 |         31 |
+| alpah\web                                                                                                    |          2 |        115 |         18 |          8 |        141 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                     | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Idang\Documents\ISPOT_IDHM\README.md                                                                | Markdown   |          2 |          0 |          2 |          4 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\README.md                                                          | Markdown   |         10 |          0 |          7 |         17 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\analysis_options.yaml                                              | YAML       |          3 |         23 |          4 |         30 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\build.gradle                                           | Groovy     |         55 |          3 |         13 |         71 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\debug\AndroidManifest.xml                          | XML        |          4 |          3 |          1 |          8 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\main\AndroidManifest.xml                           | XML        |         31 |          6 |          1 |         38 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\main\kotlin\com\example\test323232\MainActivity.kt | kotlin     |          4 |          0 |          3 |          7 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\main\res\drawable-v21\launch_background.xml        | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\main\res\drawable\launch_background.xml            | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\main\res\values-night\styles.xml                   | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\main\res\values\styles.xml                         | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\app\src\profile\AndroidManifest.xml                        | XML        |          4 |          3 |          1 |          8 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\build.gradle                                               | Groovy     |         27 |          0 |          5 |         32 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\gradle.properties                                          | Properties |          5 |          0 |          1 |          6 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\gradle\wrapper\gradle-wrapper.properties                   | Properties |          5 |          1 |          1 |          7 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\android\settings.gradle                                            | Groovy     |          8 |          0 |          4 |         12 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\AppDelegate.swift                                       | Swift      |         12 |          0 |          2 |         14 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json        | JSON       |        122 |          0 |          1 |        123 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json      | JSON       |         23 |          0 |          1 |         24 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md          | Markdown   |          3 |          0 |          2 |          5 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\Base.lproj\LaunchScreen.storyboard                      | XML        |         36 |          1 |          1 |         38 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\Base.lproj\Main.storyboard                              | XML        |         25 |          1 |          1 |         27 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\ios\Runner\Runner-Bridging-Header.h                                | C++        |          1 |          0 |          1 |          2 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Decoration\colors.dart                                         | Dart       |          6 |          0 |          2 |          8 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Objects\instgram_object.dart                                   | Dart       |         53 |          0 |         12 |         65 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Objects\total_pack.dart                                        | Dart       |          8 |          0 |          5 |         13 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Objects\track_object.dart                                      | Dart       |         93 |          2 |         27 |        122 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Tools_Static\Stringops.dart                                    | Dart       |         27 |          0 |          3 |         30 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Tools_Static\exstions.dart                                     | Dart       |         15 |          0 |          2 |         17 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Tools_Static\song_mannger.dart                                 | Dart       |         59 |          1 |         27 |         87 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Tools_Static\spot.dart                                         | Dart       |         78 |          2 |         18 |         98 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\Tools_Static\youtube_ops.dart                                  | Dart       |        121 |          5 |         23 |        149 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\exceptions.dart                                                | Dart       |         18 |          0 |          7 |         25 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\main.dart                                                      | Dart       |        111 |          0 |         17 |        128 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\widgets\audio_player_warpper.dart                              | Dart       |        154 |          0 |         43 |        197 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\widgets\error_page.dart                                        | Dart       |         11 |          0 |          3 |         14 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\widgets\instgram_page.dart                                     | Dart       |        219 |          0 |          5 |        224 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\lib\widgets\photo_show.dart                                        | Dart       |         18 |          0 |          3 |         21 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\linux\flutter\generated_plugin_registrant.cc                       | C++        |          7 |          4 |          5 |         16 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\linux\flutter\generated_plugin_registrant.h                        | C++        |          5 |          5 |          6 |         16 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\linux\main.cc                                                      | C++        |          5 |          0 |          2 |          7 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\linux\my_application.cc                                            | C++        |         74 |         11 |         20 |        105 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\linux\my_application.h                                             | C++        |          7 |          7 |          5 |         19 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\pubspec.yaml                                                       | YAML       |         30 |         56 |         17 |        103 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\test\widget_test.dart                                              | Dart       |         14 |         10 |          7 |         31 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\web\index.html                                                     | HTML       |         80 |         18 |          7 |        105 |
+| c:\Users\Idang\Documents\ISPOT_IDHM\alpah\web\manifest.json                                                  | JSON       |         35 |          0 |          1 |         36 |
+| Total                                                                                                        |            |      1,654 |        194 |        325 |      2,173 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

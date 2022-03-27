@@ -14,10 +14,6 @@ class YoutubeOps{
    static final   RegExp  _youtubeReg = RegExp('''\"videoId\"\:\"[\\w]{11}\"''');
    static const _youtubeQueryUri = "https://www.youtube.com/results?search_query=";
 
-
-
-
-
    static void realseSongSpace(String key){
      if(_taken.containsKey(key)){
        _taken[key]=null;
@@ -27,6 +23,7 @@ class YoutubeOps{
      }
 
    }
+
     static void initYotubeOps(int stackSize){
       if(stackSize <= 0 )
       {
@@ -38,6 +35,7 @@ class YoutubeOps{
         }
 
     }
+
    static getFirstEmptySpace(){
      for(var key in _taken.keys){
         if(_taken[key] == null){
@@ -47,6 +45,7 @@ class YoutubeOps{
       throw FileStackOverFlow();
 
    }
+
    static realse(String songName){
      //TO DO add exception if the value doesnt exsists 
      _taken[songName] = null ; 
@@ -63,6 +62,7 @@ class YoutubeOps{
         return VideoId;
 
     }
+    
     static Future<String> getYoutubeIdString(String name )async{
               final youtubeCode = await http.read(Uri.parse("$_youtubeQueryUri${name}"));
               Iterable<RegExpMatch> regexMatches = _youtubeReg.allMatches(youtubeCode);
@@ -74,6 +74,7 @@ class YoutubeOps{
         return VideoId;
 
     }
+   
     static Future<String> saveVideo(String idParam )async{
       print("helllo");
                     var yt = ytl.YoutubeExplode();
@@ -109,6 +110,7 @@ class YoutubeOps{
               yt.close();
               return filePath;
     }
+   
     static Future<String> saveVideoVideoId(ytl.VideoId id)async{
                     var yt = ytl.YoutubeExplode();
               var manifest2 = await yt.videos.streamsClient

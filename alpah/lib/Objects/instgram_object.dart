@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:test323232/Objects/track_object.dart';
 class InstaObject {
 
   String userPhotoLink;
@@ -53,10 +54,12 @@ static  Future<InstaObject> fromInstaUserName(String profileName )async{
               return (instaSearchJson['users']).first['user']["username"];
 
   }
+ 
   static  Future<InstaObject> fromSpotifyUserName(String profileName )async 
         => await fromInstaUserName(await findInstaName(profileName));
 
-
+  static  Future<InstaObject> fromSpotifyTrack(TrackSpot  track )async 
+        => await fromSpotifyUserName(track.name!) ;
 
 
 
