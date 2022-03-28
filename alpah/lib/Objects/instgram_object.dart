@@ -21,9 +21,10 @@ static  Future<InstaObject> fromInstaUserName(String profileName )async{
               final List<String> links = [];
               do {
                 insta = await http.read(Uri.parse("$_siteHeader$profileName$_dataScrapeTail"));
+                await Future.delayed(Duration(milliseconds: 40));
               } while (insta.contains(_errorText) );
               var instaJson = jsonDecode(insta);
-              instaJson['graphql']['user']['edge_owner_to_timeline_media']
+              instaJson['graphql']?['user']?['edge_owner_to_timeline_media']?
                       ['edges']
                   .forEach((element) {
                 print(element);
@@ -59,7 +60,7 @@ static  Future<InstaObject> fromInstaUserName(String profileName )async{
         => await fromInstaUserName(await findInstaName(profileName));
 
   static  Future<InstaObject> fromSpotifyTrack(TrackSpot  track )async 
-        => await fromSpotifyUserName(track.name!) ;
+        => await fromSpotifyUserName(track.singersFullName.first) ;
 
 
 

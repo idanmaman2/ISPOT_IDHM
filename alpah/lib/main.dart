@@ -1,21 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:spotify/spotify.dart';
 import 'package:test323232/Objects/instgram_object.dart';
 import 'package:test323232/Objects/track_object.dart';
 import 'package:test323232/Tools_Static/youtube_ops.dart';
 import 'package:test323232/widgets/audio_player_warpper.dart';
-import 'package:test323232/widgets/error_page.dart';
 import 'package:test323232/widgets/instgram_page.dart';
 import 'package:test323232/Tools_Static/spot.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart' as ytl;
-import 'package:permission_handler/permission_handler.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as path;
 
 void main() {
   runApp(const MyApp());
@@ -84,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               await track.saveFile();
               await track.loadSong();
              InstaObject insta = await InstaObject.fromSpotifyUserName(track.singersFullName.first);
+             print("deploayed 1");
               String VideoId = await YoutubeOps.getYoutubeIdString(track.name!);
               print(VideoId);
 

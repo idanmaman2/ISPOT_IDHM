@@ -32,14 +32,18 @@ class SongMannger{
 
   static Stream<int>  _firstInit()async*{
     for(int i=0; i < songsNextSize ; i++){
-      TotalPack pack = await TotalPack.fromTrackSpot(spot.getNextSong()); 
+      TotalPack pack = await TotalPack.fromTrackSpot(spot.getNextSong());
+      if(_songsNext.length < songsNextSize )  {
+          _songsNext.addLast(pack);
+          pack.track?.saveFile();
+        }
         _songsNext.addLast(pack); 
       yield  i ; 
     } 
 
   }
 
-  static TotalPack getNextSong(){
+  static Future<TotalPack> getNextSong()async{
     if(_songsNext.length >= 1 ){
       if(current != null){
         _songsPrev.addLast(current!); 
@@ -50,6 +54,7 @@ class SongMannger{
       }
       
       TotalPack.fromTrackSpot(spot.getNextSong()).then((packAdd) {
+        print("entered to next");
         if(_songsNext.length < songsNextSize )  {
             _songsNext.addLast(packAdd);
             packAdd.track?.saveFile();
@@ -61,11 +66,11 @@ class SongMannger{
         );
       TotalPack packNext = _songsNext.removeFirst();
       _current = packNext ;
-      packNext.track?.loadSong();  
+      await packNext.track?.loadSong();  
     return packNext ; 
     }
     else {
-      throw ArgumentError();
+      return _current!; 
     }
 
 
@@ -79,8 +84,9 @@ class SongMannger{
           TotalPack pack = _songsPrev.removeLast(); 
           if(current != null){
             _songsNext.addFirst(current!); 
+            _current = pack ; 
             if(_songsNext.length > songsNextSize){
-              TotalPack packRm =  _songsPrev.removeLast();
+              TotalPack packRm =  _songsNext.removeLast();
                packRm.track?.realse();
             }
           return pack; 

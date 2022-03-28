@@ -11,10 +11,12 @@ class PhotoShow extends StatelessWidget {
     return Scaffold(
         body: 
       Center(
-        child: FittedBox(
-          fit: BoxFit.fill,
-          child: x,     
-    ),
+        child: InteractiveViewer(
+          child: FittedBox(
+            fit: BoxFit.fill,
+            child: x,     
+            ),
+        ),
       ));
   }
 }
