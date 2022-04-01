@@ -3,7 +3,6 @@ import 'package:avatars/avatars.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify.dart' as spotify;
 import 'package:test323232/Objects/instgram_object.dart';
-import 'package:test323232/Tools_Static/Stringops.dart';
 import 'package:test323232/widgets/photo_show.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:test323232/Decoration/colors.dart' as color_pallet;
@@ -62,7 +61,7 @@ class _ProfileShowState extends State<ProfileShow> {
                       child: Container(
                         child: Center(
                           child: AutoSizeText(
-                            "@" + widget.insta.profileName,
+                             widget.insta.formatedName,
                             maxLines: 1,
                             minFontSize: 25,
                             maxFontSize: 40,
@@ -132,17 +131,17 @@ class _ProfileShowState extends State<ProfileShow> {
                                           flex: 2,
                                           child: SingleChildScrollView (scrollDirection: Axis.horizontal, child : SingleChildScrollView(scrollDirection: Axis.vertical,
                                             child: AutoSizeText(
-                                              "Biography:\n${StringOPs.splitTosmall(widget.insta.bio)}",
+                                              "Biography:\n${widget.insta.formatedBio}",
                                               maxFontSize: 25,
                                               minFontSize: 14,
-                                              maxLines: 5,
+                                              maxLines: 100,
                                             ),
                                           ),),
                                         ),
                                         Expanded(
                                             flex: 1,
                                             child: Text(
-                                                "Followers: ${StringOPs.numberShow(widget.insta.followers.toString())}"))
+                                                "Followers: ${widget.insta.formatedFollowers}"))
                                       ],
                                     ),
                                   ],

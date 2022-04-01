@@ -5,13 +5,13 @@ class TotalPack{
   
   bool valid = false  ; 
   final TrackSpot  ? track  ; 
-  final InstaObject ? insta  ; 
+  final Future<InstaObject ? >  insta  ; 
 
   TotalPack(this.track , this.insta):valid = (track != null && track.filePath != null && track.isLoaded() && insta !=null) ; 
 
-  static Future<TotalPack> fromTrackSpot(TrackSpot track )async{
-      return TotalPack(track, await InstaObject.fromSpotifyTrack(track)); 
-  } 
+  static Future<TotalPack> fromTrackSpot(TrackSpot track ) async =>  TotalPack(track,
+    InstaObject.fromInstaUserName(await InstaObject.findInstaName(track.singersFullName.first)));
+
 
    void  reCheckValidation(){
     valid = track != null && track!.filePath != null && track!.isLoaded() && insta !=null;

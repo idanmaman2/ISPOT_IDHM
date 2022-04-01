@@ -18,8 +18,9 @@ class MusicPlayerWarpper extends StatefulWidget {
   late double maxValueSecs ;
   late Stream<Duration> pos ;
   late Stream<bool> state ;
-  int sizeOfDisplay = 10 ; 
+  int sizeOfDisplay = 40 ; 
   int placeOfDisplay = 0 ;
+  Stream<String> screen ; 
   MusicPlayerWarpper({
     Key? key,
     required this.warp, 
@@ -31,6 +32,7 @@ class MusicPlayerWarpper extends StatefulWidget {
     required this.maxValueSecs, 
     required this.pos , 
     required this.state , 
+    required this.screen
     
                                 }) : super(key: key);
 
@@ -39,7 +41,7 @@ class MusicPlayerWarpper extends StatefulWidget {
     Future __init(TotalPack pack)async{
       warp = ProfileShow(
                           await YoutubeOps.getYoutubeId(pack.track!),
-                          insta: pack.insta!,
+                          insta:(await pack.insta)!,
                           spot: spot.getSpotInstance(),
                         ); 
       maxValueSecs = pack.track!.durationOfSong().inSeconds.toDouble();
@@ -51,6 +53,7 @@ class MusicPlayerWarpper extends StatefulWidget {
       pressPausePlay =pack.track!.pausePlayAuto;
       state = pack.track!.stateOfSongCurrent() ; 
       placeOfDisplay =0 ; 
+      screen = (await pack.insta)!.StreamBio(5, 20);
 
     }
 
@@ -85,16 +88,31 @@ final ValueNotifier<String> _counter = ValueNotifier<String>("");
   void initState() {
     SongMannger.initSongMannger(sizeNext: 5, sizePrev: 5);
     super.initState();
-    displayShow(300);
+    displayShow(200);
   }
 
-  void  displayShow(int milisecs){
+  void  displayShow(int milisecs)async{
 
-    Future.delayed(Duration(milliseconds: milisecs)).then((x){
-    String text = widget.warp.insta.bio.replaceAll("\n", " ");
-    _counter.value = text.substring((widget.placeOfDisplay++) % text.length , (widget.placeOfDisplay + widget.sizeOfDisplay -1 ) %text.length );
+    await Future.delayed(Duration(milliseconds: milisecs));
+      print("do that do that do that");
+
+
+
+    String text = widget.warp.insta.bio.replaceAll("\n", " ").length == 0 ? "idan maman the king he is the real real real king and no one cares":(widget.warp.insta.bio.replaceAll("\n", " "));
+    
+    widget.placeOfDisplay = (widget.placeOfDisplay + 1  )%text.length ; 
+    int sizeOfDisplay  = widget.sizeOfDisplay > text.length ? text.length : widget.sizeOfDisplay ; 
+    if( (widget.placeOfDisplay+sizeOfDisplay)/text.length >1 ){  
+      _counter.value = text.substring(widget.placeOfDisplay, text.length) + " " 
+      + text.substring(0, (widget.placeOfDisplay + sizeOfDisplay - text.length )% (text.length)+1 );
+    }
+    else {
+        _counter.value = text.substring(widget.placeOfDisplay, widget.placeOfDisplay+sizeOfDisplay);
+    }
+    
+
     displayShow(milisecs); 
-    });
+    
 
 
 
@@ -106,14 +124,23 @@ final ValueNotifier<String> _counter = ValueNotifier<String>("");
     return Scaffold(
 
       appBar: AppBar(automaticallyImplyLeading :false, backgroundColor: color_pallet.spotifySecondry,toolbarHeight: MediaQuery.of(context).size.height * 0.05 , 
-      title:  ValueListenableBuilder<String>(
-              builder: (BuildContext context, String value, Widget? child) {
-                return Text(value);
-              },
-               
-         
-              valueListenable: _counter,
-            ), ),
+      title:  Center(
+        child: 
+        StreamBuilder<Object>(
+            stream: widget.screen,
+            builder: (context, snapshot) {
+              if(snapshot.data != null ){
+                  return Text(snapshot.data as String ,style: TextStyle(fontFamily: "ScreenFont" ,color:color_pallet.spotifyMain),);
+
+                
+              }
+              return const CircularProgressIndicator();
+                
+            }
+          ),
+        
+
+      ), ),
       
       body : Container(
         color : color_pallet.spotifySecondry , 

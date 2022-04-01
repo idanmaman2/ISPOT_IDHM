@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               YoutubeOps.initYotubeOps(1);
               await track.saveFile();
               await track.loadSong();
-             InstaObject insta = await InstaObject.fromSpotifyUserName(track.singersFullName.first);
+             InstaObject insta = await InstaObject.fromInstaUserName(await InstaObject.findInstaName(track.singersFullName.first));
              print("deploayed 1");
               String VideoId = await YoutubeOps.getYoutubeIdString(track.name!);
               print(VideoId);
@@ -92,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               sliderChange: (x){ track.seekSong(Duration(seconds: x.toInt()) )  ;   },
                               pressPausePlay:track.pausePlayAuto,
                               state : track.stateOfSongCurrent() , 
+                              screen: insta.StreamBio(5  , 50),
                           warp: ProfileShow(
                           VideoId,
                           insta: insta,

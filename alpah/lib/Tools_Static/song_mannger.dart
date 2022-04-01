@@ -53,17 +53,12 @@ class SongMannger{
         }
       }
       
-      TotalPack.fromTrackSpot(spot.getNextSong()).then((packAdd) {
+      TotalPack packAdd = await TotalPack.fromTrackSpot(spot.getNextSong());
         print("entered to next");
         if(_songsNext.length < songsNextSize )  {
             _songsNext.addLast(packAdd);
             packAdd.track?.saveFile();
         }
-
-        
-        }  
-        
-        );
       TotalPack packNext = _songsNext.removeFirst();
       _current = packNext ;
       await packNext.track?.loadSong();  
