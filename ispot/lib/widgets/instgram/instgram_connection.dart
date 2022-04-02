@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ispot/widgets/spotify/spotify_login.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:insta_dart/insta_dart.dart';
 
@@ -24,6 +25,17 @@ class InstgramConnectionPage extends StatelessWidget {
           InstgramOperator op = await insta.fromCode;
           print(await op.findInstaName("anna zack"));
           print((await op.getInstgram("annazak12")).bio);
+          // going to the next login page 
+          Navigator.pop(context); //no back to that page 
+          Navigator.push<void>(
+               context,
+                MaterialPageRoute<void>(
+                   builder: (BuildContext context) => SpotifyLogin()
+                ));
+
+
+
+
            return NavigationDecision.prevent;
           }
 

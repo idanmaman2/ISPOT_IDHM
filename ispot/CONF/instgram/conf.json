@@ -1,0 +1,6 @@
+{
+    "scopes" : ["user_profile",
+                   "user_media" ] , 
+"redirectUri" : "https://www.codegrepper.com/" 
+
+}

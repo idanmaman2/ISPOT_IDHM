@@ -1,0 +1,10 @@
+{
+    "scopes" : ["user-library-read",
+                "user-read-currently-playing",
+                "user-read-recently-played",
+                "playlist-read-private",
+                "user-top-read"] , 
+    "redirectUri" : "https://github.com/asimon655/dotNet5782_3715_6941" 
+
+
+} 

@@ -31,9 +31,12 @@ dependencies:
     sdk: flutter
   webview_flutter: ^3.0.1
   http: ^0.13.4
+  spotify: ^0.7.0
   insta_dart:
-    path: ../insta_dart/
+    path: ../insta_dart
   provider: ^6.0.2
+
+
 
 
   # The following adds the Cupertino Icons font to your application.
