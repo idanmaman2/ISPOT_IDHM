@@ -35,6 +35,7 @@ dependencies:
   insta_dart:
     path: ../insta_dart
   provider: ^6.0.2
+  auto_size_text: ^3.0.0
 
 
 

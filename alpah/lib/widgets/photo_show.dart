@@ -9,14 +9,13 @@ class PhotoShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: 
-      Center(
-        child: InteractiveViewer(
-          child: FittedBox(
-            fit: BoxFit.fill,
-            child: x,     
-            ),
+        body: Center(
+      child: InteractiveViewer(
+        child: FittedBox(
+          fit: BoxFit.fill,
+          child: x,
         ),
-      ));
+      ),
+    ));
   }
 }

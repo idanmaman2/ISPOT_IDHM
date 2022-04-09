@@ -1,7 +1,6 @@
 import 'package:insta_dart/insta_dart.dart';
 
 void main() async {
-  InstgramOperator op = InstgramOperator(null, null); 
-    print(await op.findInstaName("anna zack"));
-    print((await op.getInstgram("annazak12")).bio);
+  print(await InstgramOperator.findInstaName("anna zack"));
+  print((await InstgramOperator.getInstgram("annazak12")).bio);
 }
