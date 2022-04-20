@@ -24,6 +24,7 @@ class InstgramConnectionPage extends StatelessWidget {
 }
 
 class _InstgramConnectionPage extends StatelessWidget {
+  List<WebViewCookie> _coockilida = [];
   _InstgramConnectionPage({Key? key}) : super(key: key);
   static const String redirectUri = 'https://www.codegrepper.com/';
   static const String clientId = "341783747982324";
@@ -71,6 +72,7 @@ class _InstgramConnectionPage extends StatelessWidget {
           if (navReq.url.startsWith(redirectUri)) {
             await Provider.of<InstgramLoginProvider>(context, listen: false)
                 .nextScreen(context, navReq: navReq, insta: insta);
+
             return NavigationDecision.prevent;
           }
           return NavigationDecision.navigate;

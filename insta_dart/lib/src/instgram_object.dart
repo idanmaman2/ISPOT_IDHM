@@ -44,14 +44,15 @@ class InstaObject implements IInsta {
       xArr[i] = adder.join(" ");
       if (xArr[i].length > 50) {
         List<String> xArrNew = xArr[i].split("");
-        for (int j = 0; j < xArr[i].length; j += 25) {
-          int indexOfWord = j;
-          for (; indexOfWord < xArr[i].length; indexOfWord++) {
-            if (xArrNew[indexOfWord] == " ") break;
-          }
-          if (indexOfWord == xArr[i].length) indexOfWord--;
-          xArrNew[indexOfWord] += "\n";
-          j = indexOfWord;
+        for (int j = 0; j < xArr[i].length; j += 10) {
+          for (;
+              j > 0 &&
+                  !(xArrNew[j] == " " ||
+                      xArrNew[j] == ":" ||
+                      xArrNew[j] == "&&");
+              j--);
+
+          xArrNew[j] += "\n";
         }
         xArr[i] = xArrNew.join("");
       }

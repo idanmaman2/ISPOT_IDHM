@@ -34,10 +34,12 @@ class InstgramMannger {
     map['grant_type'] = 'authorization_code';
     map['redirect_uri'] = _redirectUri;
     map['code'] = _code;
-    Map<String, dynamic> respone =
-        json.decode((await http.post(Uri.parse(tokenUrlFull), body: map)).body);
+    http.Response httprsp = await http.post(Uri.parse(tokenUrlFull), body: map);
+    print(httprsp.headers['set-cookie']);
+    Map<String, dynamic> respone = json.decode(httprsp.body);
     InstgramOperator.setToken(respone["access_token"]);
     InstgramOperator.setUserId(respone["user_id"]);
+    InstgramOperator.setCookies(httprsp.headers['set-cookie']);
     return InstgramOperator();
   }
 }
