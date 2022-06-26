@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:insta_dart/insta_dart.dart';
 import 'package:spotify/spotify.dart';
 
-import '../instgram/InstgramProfileShow.dart';
+import '../instgram/instagram_profile_show.dart';
 
 class IspotHomePage extends StatelessWidget {
   InstaObject insta;

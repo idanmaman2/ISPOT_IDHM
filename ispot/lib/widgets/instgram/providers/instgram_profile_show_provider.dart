@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_dart/insta_dart.dart';
 
-import '../InstgramProfileShow.dart';
+import '../instagram_profile_show.dart';
 
 class InstgramProfileShowProvider extends ChangeNotifier {
   Widget creator(context, String x) {
