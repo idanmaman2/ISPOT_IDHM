@@ -1,14 +1,5 @@
-# ISPOT_IDHM
- ## App to prevent from spotify ads and to have another thing to do while you are listing to music. 
- 
-#TO DO 
- MOVING DISPLAY TO SHOW YT DISCRIPTION 
- CREATE MAIN STREAM THAT AUTO GET SONGS AND SENDS TO PREV 
- STOP ALL SONGS BEFORE GO FURTHER MORE 
- USE ONE AUDIO PLAYER
- REFACTOR TO MORE EFFICIENT NET USE
- SHOW MULT INSTA'S AND NOT ONLY ONE
- CREATE PLALIST VAR IN SONG 
- - CREATE PLAYLIST OBJECT 
+# ISPOT - Instagram + spotify by IDHM 
+# curretnly in progress 
 
- 
+![photo_2022-03-28_21-21-13](https://user-images.githubusercontent.com/90776557/195819445-c93b1c6f-a847-4733-ad62-2d941189fdd8.jpg)
+![photo_2022-03-24_19-36-54](https://user-images.githubusercontent.com/90776557/195819459-14504347-5566-4586-bd7c-cbcb4f62f4ad.jpg)
