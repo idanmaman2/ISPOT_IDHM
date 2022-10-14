@@ -4,10 +4,11 @@ class InstgramOperator {
   static String? _token;
   static int? _userId;
   static String? _cookies;
-  static const String _siteHeader = "https://www.instagram.com/";
-  static const String _dataScrapeTail = "/?__a=1";
-  static const String _searchAdress =
-      "web/search/topsearch/?context=blended&query=";
+  static const String _siteHeader = "https://i.instagram.com/api/v1";
+  static const String _profileAdressHead = "/users/web_profile_info/";
+  static const String _profileAdressTail = "?username=";
+  static const String _searchAdressHead = "/web/search/topsearch/";
+  static const String _searchAdressTail ="?query=";
   static const String _errorText = "<!DOCTYPE html>";
 
   static void setToken(String token) {
@@ -26,12 +27,13 @@ class InstgramOperator {
   }
 
   static Future<InstaObject> findInstaName(String fullName) async {
+    print("entered");
     String insatSearch;
     do {
       insatSearch = await http.read(
           Uri.parse(
-              "$_siteHeader$_searchAdress$fullName${_token == null ? "" : "&access_token=$_token"} "),
-          headers: _cookies == null ? {} : {'set-cookie': _cookies!});
+              "$_siteHeader$_searchAdressHead$_searchAdressTail$fullName"),
+          headers: _cookies == null ? {} : {'set-cookie': _cookies! , 'x-ig-app-id': '936619743392459'});
       print(insatSearch);
     } while (insatSearch.contains(_errorText));
     var instaSearchJson = jsonDecode(insatSearch);
@@ -46,22 +48,22 @@ class InstgramOperator {
     do {
       insta = await http.read(
           Uri.parse(
-              "$_siteHeader$profileName$_dataScrapeTail${_token == null ? "" : "&access_token=$_token"}"),
-          headers: _cookies == null ? {} : {'set-cookie': _cookies!});
+              "$_siteHeader$_profileAdressHead$_profileAdressTail$profileName"),
+          headers: _cookies == null ? {} : {'set-cookie': _cookies!, 'x-ig-app-id': '936619743392459'});
       print(insta);
     } while (insta.contains(_errorText));
     var instaJson = jsonDecode(insta);
-    (instaJson['graphql']['user']['edge_owner_to_timeline_media']['edges'])
+    (instaJson['data']['user']['edge_owner_to_timeline_media']['edges'])
         .map((e) => e['node']['display_url'])
         .forEach((x) => links.add(x));
     print(links);
-    print(instaJson["graphql"]['user']["id"]);
+    print(instaJson["data"]['user']["id"]);
     return InstaObject(
       links,
       profileName,
-      instaJson['graphql']['user']['biography'],
-      instaJson['graphql']['user']['profile_pic_url_hd'],
-      instaJson['graphql']['user']["edge_followed_by"]["count"],
+      instaJson['data']['user']['biography'],
+      instaJson['data']['user']['profile_pic_url_hd'],
+      instaJson['data']['user']["edge_followed_by"]["count"],
     );
   }
 }

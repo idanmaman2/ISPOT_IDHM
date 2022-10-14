@@ -1,0 +1,54 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "alpah",
+            "cwd": "alpah",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "alpah (profile mode)",
+            "cwd": "alpah",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "alpah (release mode)",
+            "cwd": "alpah",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "insta_dart",
+            "cwd": "insta_dart",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ispot",
+            "cwd": "ispot",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ispot (profile mode)",
+            "cwd": "ispot",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ispot (release mode)",
+            "cwd": "ispot",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

@@ -11,7 +11,8 @@ class SpotifyLoginProvider extends ChangeNotifier {
   }
 
   Future nextScreen(context) async {
-    InstaObject instgram = await InstgramOperator.findInstaName("noaKirel");
+    print("waits...1");
+    InstaObject instgram = await InstgramOperator.findInstaName("anna");
     SpotifyApi spotify = spot.getSpotInstance();
     Navigator.push<void>(
         context,
