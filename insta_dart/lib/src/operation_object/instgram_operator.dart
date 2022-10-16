@@ -1,7 +1,7 @@
 part of insta_dart;
 
 class InstgramOperator {
-  static String? _token;
+
   static int? _userId;
   static String? _cookies;
   static const String _siteHeader = "https://i.instagram.com/api/v1";
@@ -11,9 +11,6 @@ class InstgramOperator {
   static const String _searchAdressTail ="?query=";
   static const String _errorText = "<!DOCTYPE html>";
 
-  static void setToken(String token) {
-    _token = token;
-  }
 
   static void setUserId(int UserId) {
     print(UserId);
@@ -23,7 +20,6 @@ class InstgramOperator {
   static void setCookies(String? cookies) {
     _cookies = cookies;
     _cookies = cookies! + "ds_user_id=$_userId; " + "Secure";
-    print(cookies);
   }
 
   static Future<InstaObject> findInstaName(String fullName) async {

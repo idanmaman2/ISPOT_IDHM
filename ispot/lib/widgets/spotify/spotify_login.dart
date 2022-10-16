@@ -49,22 +49,37 @@ class _SpotifyLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        initialUrl: authUri.toString(),
-        navigationDelegate: (navReq) {
-          if (navReq.url.startsWith(redirectUri)) {
-            Provider.of<SpotifyLoginProvider>(context, listen: false)
-                .LoadToken(grant, navReq);
-            Provider.of<SpotifyLoginProvider>(context, listen: false)
-                .nextScreen(context);
-            return NavigationDecision.prevent;
-          }
+    return FutureBuilder(
+      future :  Provider.of<SpotifyLoginProvider>(context, listen: false).getGrant(), 
 
-          return NavigationDecision.navigate;
-        },
-      ),
+      builder:(context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.done){
+          if(snapshot.data != null ){
+                    return Scaffold(
+        body: WebView(
+          javascriptMode: JavascriptMode.unrestricted,
+          initialUrl: authUri.toString(),
+          navigationDelegate: (navReq) {
+            if (navReq.url.startsWith(redirectUri)) {
+              Provider.of<SpotifyLoginProvider>(context, listen: false)
+                  .LoadToken(grant, navReq);
+              Provider.of<SpotifyLoginProvider>(context, listen: false)
+                  .nextScreen(context);
+              return NavigationDecision.prevent;
+            }
+    
+            return NavigationDecision.navigate;
+          },
+        ),
+      );
+          }
+          Provider.of<SpotifyLoginProvider>(context, listen: false).nextScreen(context);
+
+        }
+        return CircularProgressIndicator(); 
+
+      }
     );
   }
-}
+  }
+

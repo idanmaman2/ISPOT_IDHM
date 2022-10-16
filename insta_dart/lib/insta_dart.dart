@@ -3,6 +3,7 @@
 /// More dartdocs go here.
 library insta_dart;
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 part  './src/Login/instgram_mannger.dart';
 part  'src/instgram_object.dart';
