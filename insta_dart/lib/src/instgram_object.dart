@@ -6,12 +6,6 @@ class InstaObject implements IInsta {
   String profileName;
   String bio;
   int followers;
-  static const String _siteHeader = "https://www.instagram.com/";
-  static const String _dataScrapeTail = "/?__a=1";
-  static const String _searchAdress =
-      "web/search/topsearch/?context=blended&query=";
-  static const String _errorText = "<!DOCTYPE html>";
-
   InstaObject(this.items, this.profileName, this.bio, this.userPhotoLink,
       this.followers);
 

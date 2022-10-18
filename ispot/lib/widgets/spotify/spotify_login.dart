@@ -54,7 +54,7 @@ class _SpotifyLogin extends StatelessWidget {
 
       builder:(context, snapshot) {
         if(snapshot.connectionState == ConnectionState.done){
-          if(snapshot.data != null ){
+          if(snapshot.data == null ){
                     return Scaffold(
         body: WebView(
           javascriptMode: JavascriptMode.unrestricted,

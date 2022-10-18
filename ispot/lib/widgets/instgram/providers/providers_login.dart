@@ -19,7 +19,7 @@ jumpToFuture(context);
   void  jumpToFuture(context){
 
   // going to the next login page
-   SchedulerBinding.instance.addPostFrameCallback((_){
+   Future.delayed(Duration(milliseconds: 10 )).then((_){
 Navigator.pop(context); //no back to that page
     Navigator.push<void>(
         context,

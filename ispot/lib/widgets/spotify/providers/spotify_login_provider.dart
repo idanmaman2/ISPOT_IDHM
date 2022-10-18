@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:insta_dart/insta_dart.dart';
 import 'package:ispot/exstnsions/sporify/exstions.dart';
 import 'package:ispot/objects/spotify/spot.dart';
+import 'package:ispot/widgets/MainApp/MusicChooser.dart';
 import 'package:ispot/widgets/MainApp/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spotify/spotify.dart';
@@ -69,16 +70,15 @@ catch(e){
   }
 
   void  nextScreen(context)  {
-       SchedulerBinding.instance.addPostFrameCallback((_)async{
+       Future.delayed(Duration(milliseconds: 10 )).then((_)async{
         SpotifyApi spotify = spot.getSpotInstance();
     Track trk = (await spotify.getTracksByPlaylistId((await spotify.playlists.me.first()).items!.last.id as String)).first;
-    InstaObject instgram = await InstgramOperator.findInstaName(trk.artists!.first.name as String);
 
 Navigator.pop(context); //no back to that page
    Navigator.push<void>(
         context,
         MaterialPageRoute<void>(
-          builder: (BuildContext context) => MusicShower(trk),
+          builder: (BuildContext context) => MusicChooser(spotify),
         ));
 
   

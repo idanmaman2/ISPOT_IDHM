@@ -7,12 +7,13 @@ import 'package:spotify/spotify.dart' as spotify;
 
 import '../../design/color.dart' as colorpallet;
 import '../../design/color.dart';
+import 'artist_show.dart';
 
 class ProfileShow extends StatelessWidget {
   const ProfileShow(this.insta, {Key? key}) : super(key: key);
 
   final InstaObject insta;
-
+  
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -21,7 +22,7 @@ class ProfileShow extends StatelessWidget {
         ChangeNotifierProvider<InstgramProfileShowProvider>(
             create: (context) => InstgramProfileShowProvider()),
       ],
-      child: _ProfileShow(insta),
+      child: _ProfileShow(insta,context),
     );
   }
 }
@@ -29,16 +30,23 @@ class ProfileShow extends StatelessWidget {
 class _ProfileShow extends StatelessWidget {
   final InstaObject insta;
     final  List<Widget> widList ;
-  _ProfileShow(this.insta):widList=[
+  _ProfileShow(this.insta , context ):widList=[
     Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-
         Expanded(child: Center(child: Text("Followers:${insta.formatedFollowers}"))),
         Expanded(
           child: SizedBox(child:
           GestureDetector(
-           
+            onTap: (){
+        Navigator.push<void>(
+        context,
+        MaterialPageRoute<void>(
+            builder: (BuildContext context) => ArtistShow(insta.profileName)),
+      );
+      },
+
+  
             child: CircleAvatar(
                         child: ClipOval(
                         child: Image.network(insta.userPhotoLink),
@@ -57,7 +65,7 @@ class _ProfileShow extends StatelessWidget {
 
     ),
       
-      Text("Bio:${insta.formatedBio}",style: TextStyle(fontSize: 20),)
+      Text("Bio:${insta.bio}",style: TextStyle(fontSize: 20),)
 
 
 

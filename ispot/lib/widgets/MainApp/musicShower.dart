@@ -18,29 +18,40 @@ class MusicShower extends StatefulWidget {
 class _MusicShower extends State<MusicShower> {
   
   final _indexArtistNotifer = ValueNotifier<int>(0);
+   
+  
+
 
   @override
   Widget build(BuildContext context)  {
-    return Scaffold(
+    return      DefaultTabController(  length: widget.trk.artists?.length ?? 0 ,  
+    child : Scaffold(
       appBar: AppBar( 
-        title:SizedBox(height : 100  , child: 
-          Row(
-            
-            children:
-             List.generate(
+        title:SizedBox(height : 200  , child:  
+              TabBar(
+              tabs: 
+              List<Tab>.generate(
               widget.trk.artists?.length ?? 0 , 
-              (index) => Expanded(child: 
-                  TextButton(
-                      onPressed: (){_indexArtistNotifer.value = index; } , 
-                      child: Text(widget.trk.artists?[index].name ?? "None",style: TextStyle(fontSize: 10,color: Colors.black)))))))),
+              (index) => 
+                Tab(
+                     text: (widget.trk.artists?[index].name ?? "None"))
+              
+              
+              )
+           ) , 
+           
+        )),
+         
       body: Column(
         children: [
           Expanded(flex:5, child:
-          ValueListenableBuilder(
-            valueListenable: _indexArtistNotifer,
-            builder: (context , int value , _)=> 
-             FutureBuilder(
-            future: InstgramOperator.findInstaName(widget.trk.artists?[value].name ?? "dronesOriginal"),
+          
+           
+          TabBarView(
+
+            children : 
+           List.generate(widget.trk.artists?.length ?? 0 ,   (index)=>  FutureBuilder(
+            future: InstgramOperator.findInstaName(widget.trk.artists?[index].name ?? "dronesOriginal"),
           builder: (context, snapshot) {
                 if(snapshot.data == null ){
                   return CircularProgressIndicator();
@@ -48,7 +59,7 @@ class _MusicShower extends State<MusicShower> {
                 return ProfileShow(snapshot.data as InstaObject);
               }
           
-            ),
+            )),
           )),
           Expanded(flex:1 , 
           child: 
@@ -103,6 +114,6 @@ class _MusicShower extends State<MusicShower> {
     
     
       ),
-    );
+    ));
   }
 }

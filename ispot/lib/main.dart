@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'ISPOT',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
