@@ -72,7 +72,6 @@ catch(e){
   void  nextScreen(context)  {
        Future.delayed(Duration(milliseconds: 10 )).then((_)async{
         SpotifyApi spotify = spot.getSpotInstance();
-    Track trk = (await spotify.getTracksByPlaylistId((await spotify.playlists.me.first()).items!.last.id as String)).first;
 
 Navigator.pop(context); //no back to that page
    Navigator.push<void>(
