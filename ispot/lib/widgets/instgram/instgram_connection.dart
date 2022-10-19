@@ -28,8 +28,8 @@ class _InstgramConnectionPage extends StatelessWidget {
   List<WebViewCookie> _coockilida = [];
   _InstgramConnectionPage({Key? key}) : super(key: key);
   static const String redirectUri = 'https://www.codegrepper.com/';
-  static const String clientId = "341783747982324";
-  static const clientSecret = "01e04f84464eda6eaf4bcc2451a2e61a";
+  static const String clientId = "2921417078165131";
+  static const clientSecret = "bc229d1678e579fbda5c260a80c3a127";
   final scopes = const ['user_profile'];
   InstgramMannger insta = InstgramMannger(clientId, clientSecret, redirectUri,getApplicationDocumentsDirectory());
   
