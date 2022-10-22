@@ -15,10 +15,26 @@ class MusicShower extends StatefulWidget {
   State<MusicShower> createState() => _MusicShower();
 }
 
-class _MusicShower extends State<MusicShower> {
+class _MusicShower extends State<MusicShower> with SingleTickerProviderStateMixin {
   
   final _indexArtistNotifer = ValueNotifier<int>(0);
-   
+   late AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 15000),
+      vsync: this,
+    );
+    _controller.repeat();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
   
 
 
@@ -42,78 +58,95 @@ class _MusicShower extends State<MusicShower> {
            
         )),
          
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(flex:5, child:
+          Center(
+            child: RotationTransition(
+                  turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                  child: ClipOval(child: Image.network(widget.trk.album!.images!.first.url as String,fit: BoxFit.fill,))),
+          )
           
-           
-          TabBarView(
-
-            children : 
-           List.generate(widget.trk.artists?.length ?? 0 ,   (index)=>  FutureBuilder(
-            future: InstgramOperator.findInstaName(widget.trk.artists?[index].name ?? "dronesOriginal"),
-          builder: (context, snapshot) {
-                if(snapshot.data == null ){
-                  return CircularProgressIndicator();
-                }
-                return ProfileShow(snapshot.data as InstaObject);
-              }
-          
-            )),
-          )),
-          Expanded(flex:1 , 
-          child: 
-          Container(color: spotifyMain,
+          ,Container(
+            color:spotifySecondry.withOpacity(0.3),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children:[
-                  Expanded(child: Image.network(widget.trk.album!.images!.first.url as String,fit: BoxFit.fill, ),),
-                  Expanded(child: Center(child: Text(widget.trk.name as String)),)
-                  ]
-
-
+            children: [
+              Expanded(flex:5, child:
+              
+               
+              TabBarView(
+      
+                children : 
+               List.generate(widget.trk.artists?.length ?? 0 ,   (index)=>  FutureBuilder(
+                future: InstgramOperator.findInstaName(widget.trk.artists?[index].name ?? "dronesOriginal"),
+              builder: (context, snapshot) {
+                    if(snapshot.data == null ){
+                      return CircularProgressIndicator();
+                    }
+                    return ProfileShow(snapshot.data as InstaObject);
+                  }
+              
                 )),
-                Expanded(child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                        Expanded(
-                          child: IconButton(icon:Icon(Icons.skip_previous),onPressed: (){},)
-                        ),
-                               Expanded(
-                          child: IconButton(icon:Icon(Icons.play_arrow),onPressed: (){},)
-                        ),
-                               Expanded(
-                          child: IconButton(icon:Icon(Icons.skip_next),onPressed: (){},)
-                        )
-
-
-                    ],
-
-
+              )),
+              Expanded(flex:1 , 
+              child: 
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [spotifySecondry,spotifyMain],tileMode: TileMode.mirror,end: Alignment.topCenter)
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children:[
+                      Expanded(child: SizedBox(height :30 , width : 20 ,child: ClipOval(child: Image.network(widget.trk.album!.images!.first.url as String,fit: BoxFit.fill, ))),),
+                      Expanded(child: Center(child: Text(widget.trk.name as String)),)
+                      ]
+      
+      
+                    )),
+                    Expanded(child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                            Expanded(
+                              child: IconButton(icon:Icon(Icons.skip_previous),onPressed: (){},)
+                            ),
+                                   Expanded(
+                              child: IconButton(icon:Icon(Icons.play_arrow),onPressed: (){},)
+                            ),
+                                   Expanded(
+                              child: IconButton(icon:Icon(Icons.skip_next),onPressed: (){},)
+                            )
+      
+      
+                        ],
+      
+      
+                    )
+      
+      
+      
+                    )
+      
+      
+                  ],
+      
+      
+      
                 )
-
-
-
-                )
-
-
-              ],
-
-
-
-            )
-          
-          
-          ),),
-        ]
-    
-    
-    
-    
+              
+              
+              ),),
+            ]
+            
+            
+            
+            
+        ),
+          ),]
       ),
-    ));
+      
+      ),
+    );
   }
 }

@@ -39,7 +39,7 @@ class songCard extends StatelessWidget {
                   Spacer(flex:1),
                   Expanded(child: Text(trk.name!)),
                   Spacer(flex:1),
-                  Expanded(child: Text(trk.duration.toString()))
+                  Expanded(child: Text("${trk.duration?.inMinutes ?? 0 }:${(trk.duration?.inSeconds ?? 0) %60 }"))
 
 
                

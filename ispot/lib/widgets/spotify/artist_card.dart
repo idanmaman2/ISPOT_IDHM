@@ -20,26 +20,34 @@ final Color _fg;
   Widget build(BuildContext context) {
   List<Widget> childrenRowCol = [
      Spacer(flex:1 ),
-                  Expanded(flex:_dirHor ?  14 : 10 , child: (!_round ? ClipRect (child: Image.network(_imageURl)): ClipOval(child: Image.network(_imageURl)))),
+                  Expanded(flex:_dirHor ?  14 : 10 , child: (!_round ? ClipRect (child: Image.network(_imageURl)): ClipOval(child: Image.network(_imageURl,fit: BoxFit.fitWidth,)))),
                   Spacer(flex:1 ),
-                  Expanded(flex : _dirHor ? 4 : 8 , child: Align( alignment: !_dirHor ? Alignment.centerLeft : Alignment.bottomCenter ,child: Text(_name, style: TextStyle(fontSize:15 , fontWeight: FontWeight.w200,color: Colors.white),)))
+                  Expanded(flex : _dirHor ? 4 : 8 , child: Align( alignment: !_dirHor ? Alignment.centerLeft : Alignment.bottomCenter ,child: Text(_name, style: TextStyle(fontSize:15 , fontWeight: FontWeight.w400,color: _bg),)))
                 ] ; 
    return Card(
         
           child: 
           
           Container(
-            color: _bg,
+            color:_bg ,
             child: Container(
+            
               decoration: BoxDecoration(
+              boxShadow: [BoxShadow(spreadRadius: 0.4)],
+                gradient: RadialGradient(colors:[_bg , _fg , _bg ,_fg],radius:0.6 , tileMode: TileMode.mirror),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                 color: _fg.withOpacity(0.80), 
               ),
-              width:!_dirHor ?   200 : 150 ,
-             
-              child: !_dirHor ? Row(
-                children:childrenRowCol ,
-              ): Column(children: childrenRowCol,), 
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                   color: _fg.withOpacity(0.80), 
+                ),
+                width:!_dirHor ?   200 : 150 ,
+               
+                child: !_dirHor ? Row(
+                  children:childrenRowCol ,
+                ): Column(children: childrenRowCol,), 
+              ),
             ),
           ),
         );

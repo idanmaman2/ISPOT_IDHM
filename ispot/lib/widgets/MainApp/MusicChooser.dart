@@ -28,7 +28,7 @@ class MusicChooser extends StatelessWidget {
                         backgroundColor: spotifySecondry,
                         title : Container(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient( end : Alignment.center,tileMode: TileMode.mirror, colors: [spotifyMain,spotifySecondry] )
+                            gradient: LinearGradient( end : Alignment.center,tileMode: TileMode.mirror, colors: [spotifySecondry,spotifySecondry,Colors.blue,spotifyMain,Colors.white] )
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -55,18 +55,27 @@ class MusicChooser extends StatelessWidget {
                         color:spotifySecondry,
                         child: CustomScrollView(
       slivers: <Widget>[
+
+      
+
+
        SliverAppBar(
-        pinned: false,
+
+        backgroundColor: spotifyMain,
+
         expandedHeight: 350.0,
         
         flexibleSpace: FlexibleSpaceBar(
+          
+          titlePadding: EdgeInsets.all(0),
           background: Container(
             color: spotifyMain,
           ),
+          
           title:Column(
             children: [
              const  Spacer(flex:4 ),
-              const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child: Text("Last played Artists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,))) , 
+              const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child:FittedBox(fit:BoxFit.fitWidth,child: Text("Last played Artists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
               const Spacer(flex:1),
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.me.recentlyPlayed(limit: 50, after: DateTime.now().subtract(Duration(days: 1))),
@@ -82,6 +91,8 @@ class MusicChooser extends StatelessWidget {
                   }
                    
                     return ListView(
+                      
+                     
                         scrollDirection: Axis.horizontal,
 
                         children: List.generate(artistsPlayedSet.length,( index){
@@ -135,17 +146,19 @@ class MusicChooser extends StatelessWidget {
       ),
            
              SliverAppBar(
+               backgroundColor: spotifySecondry,
         pinned: false,
         expandedHeight: 300.0,
         
         flexibleSpace: FlexibleSpaceBar(
+             titlePadding: EdgeInsets.all(0),
           background: Container(
             color: spotifySecondry,
           ),
           title:Column(
             children: [
              const  Spacer(flex:4 ),
-              const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: Text("Featured  playlist ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,))) , 
+              const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child:Text("Featured  playlist ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
               const Spacer(flex:1),
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.playlists.featured.all(50) , 
@@ -193,15 +206,16 @@ class MusicChooser extends StatelessWidget {
                    ,SliverAppBar(
         pinned: false,
         expandedHeight: 300.0,
-        
+         backgroundColor: spotifyMain,
         flexibleSpace: FlexibleSpaceBar(
+             titlePadding: EdgeInsets.all(0),
           background: Container(
             color: spotifyMain,
           ),
           title:Column(
             children: [
              const  Spacer(flex:4 ),
-              const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: Text("My Playlists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,))) , 
+              const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child:Text("My Playlists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
               const Spacer(flex:1),
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.playlists.me.all() , 
@@ -248,17 +262,19 @@ class MusicChooser extends StatelessWidget {
                    
               
                     ,SliverAppBar(
+                       backgroundColor: spotifySecondry,
         pinned: false,
         expandedHeight: 350.0,
         
         flexibleSpace: FlexibleSpaceBar(
+             titlePadding: EdgeInsets.all(0),
           background: Container(
             color: spotifySecondry,
           ),
           title:Column(
             children: [
              const  Spacer(flex:4 ),
-              const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child: Text("Top played Artists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,))) , 
+              const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child: Text("Top played Artists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
               const Spacer(flex:1),
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.me.topArtists() ,

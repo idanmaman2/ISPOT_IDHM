@@ -33,6 +33,7 @@ class InstgramOperator {
 
     var instaSearchJson = jsonDecode(insatSearch);
     String name = (instaSearchJson['users']).first['user']["username"];
+    
     return await getInstgram(name);
   }
 
