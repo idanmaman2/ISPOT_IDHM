@@ -8,6 +8,7 @@ import 'package:spotify/spotify.dart' as spot;
 
 class MusicShower extends StatefulWidget {
   final spot.Track trk ; 
+  
   const MusicShower( this.trk , {Key? key}) : super(key: key);
   
 
@@ -50,7 +51,11 @@ class _MusicShower extends State<MusicShower> with SingleTickerProviderStateMixi
               widget.trk.artists?.length ?? 0 , 
               (index) => 
                 Tab(
-                     text: (widget.trk.artists?[index].name ?? "None"))
+                  child: FittedBox(
+                    child: Text("${widget.trk.artists?[index].name}",),
+                    fit:BoxFit.fitWidth
+                  ), 
+                    )
               
               
               )

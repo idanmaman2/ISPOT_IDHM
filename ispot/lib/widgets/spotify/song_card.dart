@@ -13,11 +13,12 @@ class songCard extends StatelessWidget {
  final Color _bg ; 
  final Color _fg ; 
  final int _index ; 
+
    songCard(this.trk , { required int index , required Color bg , required Color fg ,   Key? key}) :_index = index , _bg= bg, _fg=fg , super(key: key);
   
   @override
   Widget build(BuildContext context) {
-    Random random = Random();
+
 
    return Card(
         
@@ -25,31 +26,58 @@ class songCard extends StatelessWidget {
           
           Container(
             color: _bg,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                 color: _fg.withOpacity(0.80), 
+            child: ConstrainedBox(
+  constraints: new BoxConstraints(
+    minHeight: 200,
+
+    maxHeight: 300.0,
+
+  ),
+ 
+              child: Container(
+                
+                decoration: BoxDecoration(
+                  image:DecorationImage(
+                    image:NetworkImage(trk.album!.images!.first.url!),
+                    fit: BoxFit.cover
+                  ) ,
+                  border: Border.all(color:_bg.withBlue(3),width: 10),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                   color: _fg.withOpacity(0.80), 
+                ),
+                width: double.infinity,
+                
+                child: Row(
+                  children: [
+                    Expanded(flex : 3 , child: FittedBox(fit:BoxFit.fitWidth,child:TextButton(onPressed: (){}, child:FittedBox(fit:BoxFit.fitWidth,child:Text(_index.toString().padLeft(2,"0"),style: TextStyle( color: Colors.white,fontWeight: FontWeight.w800),))) )),
+
+                    Expanded(flex:5 , child:  Center(
+                      child: Stack(
+                        children:[
+                          Text(trk.name!,style: TextStyle( fontSize :30 , fontWeight: FontWeight.w900 ,foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 6
+                                ..color = Colors.black,),),
+                                
+                                Text(trk.name!,style: TextStyle( fontSize :30 , fontWeight: FontWeight.w900 ,color:spotifyMain))
+                                
+                                
+                                ]
+                      ),
+                    )),
+                    Spacer(flex:1),
+                    Expanded(flex:2 , child: FittedBox(fit:BoxFit.fitWidth,child:Text("${trk.duration?.inMinutes ?? 0 }:${"${(trk.duration?.inSeconds?? 0) %60 }".padLeft(2,"0")}" ,style:TextStyle(color: Colors.white))))
+            
+            
+                 
+                 
+                  ],
+                ),
+                   
+            
+            
+            
               ),
-              width: double.infinity,
-              height: 150 ,
-              child: Row(
-                children: [
-                  Expanded(child: Text(_index.toString(),style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w600),)) ,
-                  Expanded(flex : 3 , child: Padding(padding: EdgeInsets.all(20), child: ClipOval(child: Image.network(trk.album!.images!.first.url!,fit:BoxFit.fill)))),
-                  Spacer(flex:1),
-                  Expanded(child: Text(trk.name!)),
-                  Spacer(flex:1),
-                  Expanded(child: Text("${trk.duration?.inMinutes ?? 0 }:${(trk.duration?.inSeconds ?? 0) %60 }"))
-
-
-               
-               
-                ],
-              ),
-       
-
-
-
             ),
           ),
         );
@@ -63,4 +91,3 @@ class songCard extends StatelessWidget {
   }
 
 }
-

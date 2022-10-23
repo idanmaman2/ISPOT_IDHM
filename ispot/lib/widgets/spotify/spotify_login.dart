@@ -39,7 +39,7 @@ class _SpotifyLogin extends StatelessWidget {
   ];
   _SpotifyLogin() {
     credentials = SpotifyApiCredentials(
-        "60b24b98a3be4b1c81eb513ff31671f4", "145a64b381d64bd4b9ce77d5e34bd1f6");
+        "faacc54f879248a2b00b8d4acced093b", "5356a6e50a19497e84fa34b38136e1c4");
     grant = SpotifyApi.authorizationCodeGrant(credentials);
     authUri = grant.getAuthorizationUrl(
       Uri.parse(redirectUri),

@@ -34,7 +34,7 @@ class _ProfileShow extends StatelessWidget {
     Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Expanded(child: Center(child: Text("Followers:${insta.formatedFollowers}"))),
+        Expanded(child: Center(child: Text("Followers:${insta.formatedFollowers}",style: TextStyle(fontWeight: FontWeight.w900),))),
         Expanded(
           child: SizedBox(child:
           GestureDetector(
@@ -73,7 +73,7 @@ class _ProfileShow extends StatelessWidget {
 
     ),
       
-      Text("Bio:${insta.bio}",style: TextStyle(fontSize: 20),)
+      Text("Bio:${insta.bio}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),)
 
 
 
@@ -100,7 +100,7 @@ class _ProfileShow extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return widList[index];
+                  return Container(child: widList[index],color: instagramMain.withOpacity(0.9));
                 },
                 childCount: widList.length,
               ),
@@ -108,7 +108,7 @@ class _ProfileShow extends StatelessWidget {
       SliverGrid(
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
-          mainAxisSpacing: 10,
+          mainAxisSpacing: 20,
           crossAxisSpacing:10,
           childAspectRatio: 2/3,
         ),

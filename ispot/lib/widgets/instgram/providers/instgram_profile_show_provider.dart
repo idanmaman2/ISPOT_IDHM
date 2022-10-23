@@ -24,7 +24,7 @@ class InstgramProfileShowProvider extends ChangeNotifier {
       fit: BoxFit.fill,
     );
     return InkWell(
-      child: img,
+      child: Opacity(opacity:0.88 , child: img),
       onTap: () => Navigator.push<void>(
         context,
         MaterialPageRoute<void>(

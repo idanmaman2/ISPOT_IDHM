@@ -25,27 +25,30 @@ class MusicChooser extends StatelessWidget {
                    spot.User me = snapshot.data as spot.User  ; 
                    return Scaffold(
                       appBar: AppBar(
+                     
+                   
+      
                         backgroundColor: spotifySecondry,
                         title : Container(
-                          decoration: BoxDecoration(
+                          decoration:const  BoxDecoration(
                             gradient: LinearGradient( end : Alignment.center,tileMode: TileMode.mirror, colors: [spotifySecondry,spotifySecondry,Colors.blue,spotifyMain,Colors.white] )
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                        Expanded(flex:2 , child:Text("Ispot")),
-                        Spacer(flex:1),
+                       const Expanded(flex:2 , child:Text("Ispot")),
+                       const Spacer(flex:1),
                             Expanded(child:Image.asset("assets/lofo.png",height: 50 ,width: 50,)),
                                             Spacer(flex:1),        
                               Expanded(flex:2,
                                 child: Container(
                                   height: 50,
                                   width: 150,
-                                  decoration: BoxDecoration(                        
+                                  decoration:const  BoxDecoration(                        
                                   
                                       borderRadius: BorderRadius.all(Radius.circular(15),)),
                                   
-                                  child: Center(child: Text(me.displayName ?? "" ,style: TextStyle(fontSize: 25 , fontWeight: FontWeight.w100),))),
+                                  child: Center(child: Text(me.displayName ?? "" ,style: const TextStyle(fontSize: 25 , fontWeight: FontWeight.w100),))),
                               ),
                             ],
                           ),
@@ -63,22 +66,22 @@ class MusicChooser extends StatelessWidget {
 
         backgroundColor: spotifyMain,
 
-        expandedHeight: 350.0,
+        expandedHeight: 300.0,
         
         flexibleSpace: FlexibleSpaceBar(
           
-          titlePadding: EdgeInsets.all(0),
+          titlePadding: const EdgeInsets.all(0),
           background: Container(
             color: spotifyMain,
           ),
           
           title:Column(
             children: [
-             const  Spacer(flex:4 ),
+             const  Spacer(flex:3 ),
               const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child:FittedBox(fit:BoxFit.fitWidth,child: Text("Last played Artists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
-              const Spacer(flex:1),
+              
               Expanded(flex : 4 , child: FutureBuilder(
-                future: spotify.me.recentlyPlayed(limit: 50, after: DateTime.now().subtract(Duration(days: 1))),
+                future: spotify.me.recentlyPlayed(limit: 50, after: DateTime.now().subtract(const Duration(days: 1))),
                 builder: (context, snapshot) {
                   if(snapshot.connectionState == ConnectionState.done){
                     Iterable recentSongs= snapshot.data as Iterable<spot.PlayHistory> ;
@@ -109,7 +112,7 @@ class MusicChooser extends StatelessWidget {
                                        Navigator.push<void>(
         context,
         MaterialPageRoute<void>(
-          builder: (BuildContext context) => TracksShow(trs ),
+          builder: (BuildContext context) => TracksShow(trs ,Image.network(art.images?.first.url  ?? "" ), "${art.name} Top Tracks " ),
         ));
                                     
                                     }
@@ -157,9 +160,8 @@ class MusicChooser extends StatelessWidget {
           ),
           title:Column(
             children: [
-             const  Spacer(flex:4 ),
-              const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child:Text("Featured  playlist ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
-              const Spacer(flex:1),
+             const  Spacer(flex:3),
+              const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child:Text("Featured  playlist ",style: TextStyle(color:Colors.white , fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.playlists.featured.all(50) , 
                 builder: (context, snapshot) {
@@ -180,7 +182,7 @@ class MusicChooser extends StatelessWidget {
                                        Navigator.push<void>(
         context,
         MaterialPageRoute<void>(
-          builder: (BuildContext context) => TracksShow(trks ),
+          builder: (BuildContext context) => TracksShow(trks,Image.network( featured.skip(index).first.images?.first.url  ?? "" ), featured.skip(index).first.name!  ),
         ));
                                    
 
@@ -214,9 +216,8 @@ class MusicChooser extends StatelessWidget {
           ),
           title:Column(
             children: [
-             const  Spacer(flex:4 ),
+             const  Spacer(flex:3 ),
               const Expanded(flex : 1 , child:Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child:Text("My Playlists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
-              const Spacer(flex:1),
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.playlists.me.all() , 
                 builder: (context, snapshot) {
@@ -237,7 +238,7 @@ class MusicChooser extends StatelessWidget {
                                        Navigator.push<void>(
         context,
         MaterialPageRoute<void>(
-          builder: (BuildContext context) =>  TracksShow(trks ),
+          builder: (BuildContext context) =>  TracksShow(trks,Image.network( featured.skip(index).first.images?.first.url  ?? "" ) ,featured.skip(index).first.name!),
         ));
                                    
 
@@ -273,9 +274,8 @@ class MusicChooser extends StatelessWidget {
           ),
           title:Column(
             children: [
-             const  Spacer(flex:4 ),
-              const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child: Text("Top played Artists ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
-              const Spacer(flex:1),
+             const  Spacer(flex:3),
+              const Expanded(flex : 1 , child: Align(alignment :Alignment.centerLeft , child: FittedBox(fit:BoxFit.fitWidth,child: Text("Top played Artists ",style: TextStyle(color:Colors.white,fontSize: 20,fontWeight: FontWeight.w800) ,)))) , 
               Expanded(flex : 4 , child: FutureBuilder(
                 future: spotify.me.topArtists() ,
                 builder: (context, snapshot) {
@@ -297,7 +297,7 @@ class MusicChooser extends StatelessWidget {
                                        Navigator.push<void>(
         context,
         MaterialPageRoute<void>(
-          builder: (BuildContext context) => TracksShow(trs),
+          builder: (BuildContext context) => TracksShow(trs,Image.network( arts.skip(index).first.images?.first.url  ?? "" ),"${trs.first.name} Top Tracks"),
         ));
                                     
                                     }
